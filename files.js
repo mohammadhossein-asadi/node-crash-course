@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 //# reading files
-//* recive 2 argument // path // callback function
+//* recive 2 parameter // path // callback function
 
 // fs.readFile("./docs/blog1.txt", (err, data) => {
 //   if (err) {
@@ -14,12 +14,31 @@ const fs = require("fs");
 // console.log("last line");
 
 //# writing files
-//* recive 3 argument // path // text // callback function
+//* recive 3 parameter // path // text // callback function
 
-fs.writeFile("./docs.blog1.txt", "hello, world!", () => {
-  console.log("File was written");
-});
+// fs.writeFile("./docs.blog1.txt", "hello, world!", () => {
+//   console.log("File was written ;)");
+// });
+
+//* This part of the file does not exist and is created
+
+// fs.writeFile("./docs.blog2.txt", "hello, friend!", () => {
+//   console.log("File was written ;)");
+// });
+
+// * If there is a file, the text is written and if there is no file, a new file is created and the text is written
 
 //# directories
+// * create directorie
+// * recive 2 parameter // path // callback function
+
+if (!fs.existsSync("./assets")) {
+  fs.mkdir("./assets", (err) => {
+    if (err) {
+      console.log(err);
+    }
+    console.log("folder created");
+  });
+}
 
 //# deleting files
