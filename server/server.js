@@ -9,13 +9,30 @@ const server = http.createServer((req, res) => {
   //   * set header content type
   res.setHeader("Content-Type", "text/html");
 
+  let path = "./server/views/";
+  switch (req.url) {
+    case "/":
+      path += "index.html";
+      break;
+    case "/about":
+      path += "about.html";
+      break;
+    case "/404":
+      path += "404.html";
+      break;
+
+    default:
+      path += "404.html";
+      break;
+  }
+
   // # send an html file
-  fs.readFile("./server/views/index.html", (err, data) => {
+  fs.readFile(path, (err, data) => {
     if (err) {
       console.log(err);
       res.end();
     } else {
-    //   res.write(data); // For use multiple things
+      //   res.write(data); // For use multiple things
       res.end(data); // If we have something, we use it directly
     }
   });
