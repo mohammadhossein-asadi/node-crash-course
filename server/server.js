@@ -13,16 +13,22 @@ const server = http.createServer((req, res) => {
   switch (req.url) {
     case "/":
       path += "index.html";
+      // set statusCode
+      res.statusCode = 200;
       break;
     case "/about":
       path += "about.html";
+      res.statusCode = 200;
       break;
-    case "/404":
-      path += "404.html";
+    // * Redirect page
+    case "/about-me":
+      res.statusCode = 301;
+      res.setHeader("Location", "./about");
+      res.end();
       break;
-
     default:
       path += "404.html";
+      res.statusCode = 404;
       break;
   }
 
@@ -33,7 +39,7 @@ const server = http.createServer((req, res) => {
       res.end();
     } else {
       //   res.write(data); // For use multiple things
-      res.end(data); // If we have something, we use it directly
+      req.statusCode = res.end(data); // If we have something, we use it directly
     }
   });
 
