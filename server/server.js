@@ -1,10 +1,22 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 
 // * createServer // recive one parameter => callback function
 // * in callback funcion recive two parameter => (req, res)
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+  // # lodash
+  // * random recive three parameter => min // max // floating => true or false defult = false
+  const num = _.random(0, 20);
+  console.log(num);
+
+  // * If you use this method, the function will run once, even if you have run the function more than once
+  const greet = _.once(() => {
+    console.log("hello ;)");
+  });
+
+  greet();
+  greet();
 
   //   * set header content type
   res.setHeader("Content-Type", "text/html");
@@ -13,16 +25,22 @@ const server = http.createServer((req, res) => {
   switch (req.url) {
     case "/":
       path += "index.html";
+      // set statusCode
+      res.statusCode = 200;
       break;
     case "/about":
       path += "about.html";
+      res.statusCode = 200;
       break;
-    case "/404":
-      path += "404.html";
+    // * Redirect page
+    case "/about-me":
+      res.statusCode = 301;
+      res.setHeader("Location", "./about");
+      res.end();
       break;
-
     default:
       path += "404.html";
+      res.statusCode = 404;
       break;
   }
 
@@ -33,7 +51,7 @@ const server = http.createServer((req, res) => {
       res.end();
     } else {
       //   res.write(data); // For use multiple things
-      res.end(data); // If we have something, we use it directly
+      req.statusCode = res.end(data); // If we have something, we use it directly
     }
   });
 
