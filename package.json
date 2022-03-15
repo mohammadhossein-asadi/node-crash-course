@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/mohammadhossein-asadi/node-crash-course/issues"
   },
-  "homepage": "https://github.com/mohammadhossein-asadi/node-crash-course#readme"
+  "homepage": "https://github.com/mohammadhossein-asadi/node-crash-course#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
