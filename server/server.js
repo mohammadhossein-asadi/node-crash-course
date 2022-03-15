@@ -1,10 +1,22 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 
 // * createServer // recive one parameter => callback function
 // * in callback funcion recive two parameter => (req, res)
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method);
+  // # lodash
+  // * random recive three parameter => min // max // floating => true or false defult = false
+  const num = _.random(0, 20);
+  console.log(num);
+
+  // * If you use this method, the function will run once, even if you have run the function more than once
+  const greet = _.once(() => {
+    console.log("hello ;)");
+  });
+
+  greet();
+  greet();
 
   //   * set header content type
   res.setHeader("Content-Type", "text/html");
