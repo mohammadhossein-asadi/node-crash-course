@@ -22,11 +22,9 @@ app.get("/about", (req, res) => {
   res.render("about");
 });
 
-
-
-
-
-
+app.get("/blogs/create", (req, res) => {
+  res.render();
+});
 
 // * 404 page
 
