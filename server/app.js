@@ -10,7 +10,6 @@ const app = express();
 app.set('view engine', 'ejs')
 
 
-
 // # Listen for requests
 app.listen(3000);
 
