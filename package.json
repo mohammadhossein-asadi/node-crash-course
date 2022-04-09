@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/mohammadhossein-asadi/node-crash-course#readme",
   "dependencies": {
+    "express": "^4.17.3",
     "lodash": "^4.17.21"
   }
 }
