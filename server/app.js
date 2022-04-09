@@ -13,12 +13,25 @@ app.listen(3000);
 // * Get 2 argument => path // calback function
 
 app.get("/", (req, res) => {
-  // res.send("<p>home page</p>");
-  res.render("index", { title: "Home" });
+  const blogs = [
+    {
+      title: "Yoshi finds eggs",
+      snippet: "Lorem ipsum dolor sit amet consectetur",
+    },
+    {
+      title: "Mario finds stars",
+      snippet: "Lorem ipsum dolor sit amet consectetur",
+    },
+    {
+      title: "How to defeat bowser",
+      snippet: "Lorem ipsum dolor sit amet consectetur",
+    },
+  ];
+
+  res.render("index", { title: "Home", blogs: blogs });
 });
 
 app.get("/about", (req, res) => {
-  // res.send("<p>about page</p>");
   res.render("about", { title: "About" });
 });
 
