@@ -3,6 +3,14 @@ const express = require("express");
 // # Express app
 const app = express();
 
+
+// # Register view engine
+
+
+app.set('view engine', 'ejs')
+
+
+
 // # Listen for requests
 app.listen(3000);
 
