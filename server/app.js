@@ -8,7 +8,7 @@ const app = express();
 app.listen(3000);
 
 
-
+app.use(morgan("dev"));
 
 
 // register view engine
