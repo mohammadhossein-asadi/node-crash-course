@@ -1,16 +1,21 @@
 const express = require("express");
+const morgan = require("morgan");
 
-// # Express app
+// express app
 const app = express();
 
-// # Register view engine
-
-app.set("view engine", "ejs");
-
-// # Listen for requests
+// listen for requests
 app.listen(3000);
 
-// * Get 2 argument => path // calback function
+// middleware & static files
+
+app.use(express.static("public"));
+
+app.use(morgan("dev"));
+
+// register view engine
+app.set("view engine", "ejs");
+// app.set('views', 'myviews');
 
 app.get("/", (req, res) => {
   const blogs = [
@@ -27,8 +32,7 @@ app.get("/", (req, res) => {
       snippet: "Lorem ipsum dolor sit amet consectetur",
     },
   ];
-
-  res.render("index", { title: "Home", blogs: blogs });
+  res.render("index", { title: "Home", blogs });
 });
 
 app.get("/about", (req, res) => {
@@ -39,8 +43,7 @@ app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create a new blog" });
 });
 
-// * 404 page
-
+// 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
