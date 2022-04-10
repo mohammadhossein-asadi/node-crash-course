@@ -6,12 +6,21 @@ const app = express();
 // listen for requests
 app.listen(3000);
 
-app.use((req, res) => {
-  console.log("New request made: ");
+app.use((req, res,next) => {
+  console.log("New request made ");
   console.log("host: ", req.hostname);
   console.log("path: ", req.path);
   console.log("method: ", req.method);
+  next()
 });
+
+
+app.use((req, res, next) => {
+  console.log("In the next middleware ");
+  next();
+});
+
+
 
 // register view engine
 app.set("view engine", "ejs");
