@@ -1,4 +1,5 @@
 const express = require("express");
+const morgan = require("morgan");
 
 // express app
 const app = express();
@@ -6,19 +7,7 @@ const app = express();
 // listen for requests
 app.listen(3000);
 
-app.use((req, res,next) => {
-  console.log("New request made ");
-  console.log("host: ", req.hostname);
-  console.log("path: ", req.path);
-  console.log("method: ", req.method);
-  next()
-});
 
-
-app.use((req, res, next) => {
-  console.log("In the next middleware ");
-  next();
-});
 
 
 
