@@ -10,6 +10,13 @@ app.set("view engine", "ejs");
 // # Listen for requests
 app.listen(3000);
 
+// app.use((res, req) => {
+//   console.log("new request");
+//   console.log("host: ", req.hostname);
+//   console.log("path: ", req.path);
+//   console.log("method ", req.method);
+// });
+
 // * Get 2 argument => path // calback function
 
 app.get("/", (req, res) => {
