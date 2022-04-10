@@ -1,23 +1,21 @@
 const express = require("express");
 
-// # Express app
+// express app
 const app = express();
 
-// # Register view engine
-
-app.set("view engine", "ejs");
-
-// # Listen for requests
+// listen for requests
 app.listen(3000);
 
-// app.use((res, req) => {
-//   console.log("new request");
-//   console.log("host: ", req.hostname);
-//   console.log("path: ", req.path);
-//   console.log("method ", req.method);
-// });
+app.use((req, res) => {
+  console.log("New request made: ");
+  console.log("host: ", req.hostname);
+  console.log("path: ", req.path);
+  console.log("method: ", req.method);
+});
 
-// * Get 2 argument => path // calback function
+// register view engine
+app.set("view engine", "ejs");
+// app.set('views', 'myviews');
 
 app.get("/", (req, res) => {
   const blogs = [
@@ -34,8 +32,7 @@ app.get("/", (req, res) => {
       snippet: "Lorem ipsum dolor sit amet consectetur",
     },
   ];
-
-  res.render("index", { title: "Home", blogs: blogs });
+  res.render("index", { title: "Home", blogs });
 });
 
 app.get("/about", (req, res) => {
@@ -46,8 +43,7 @@ app.get("/blogs/create", (req, res) => {
   res.render("create", { title: "Create a new blog" });
 });
 
-// * 404 page
-
+// 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });
 });
